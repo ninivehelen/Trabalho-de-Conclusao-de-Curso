@@ -5,7 +5,7 @@ clear_output()
 
 from exploracao_dados_sistec_lib_otimizado_v4 import *
 
-caminho_completo_base = "C:/Users/niniv/OneDrive/Área de Trabalho/TCC-ninive/"
+caminho_completo_base = "C:/Users/niniv/OneDrive/Área de Trabalho/Trabalho-de-Conclusao-de-Curso/"
 
 """
     Arquivo criado para processar a base versão 4 da base de dados fornecdida.
@@ -186,8 +186,8 @@ mapa_funcoes = {
                                         'situacao_matricula',
                                         'modalidade_ensino',
                                         #'status_ciclo_matricula',
-                                        #'sigla_instituicao',
-                                        #'nome_completo_instituicao'
+                                        'sigla_agrupador',
+                                        'nome_completo_agrupador'
                                         ]},
 
     'valida_estado': {'funcao': valida_estado,
