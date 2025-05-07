@@ -163,7 +163,7 @@ def valida_inteiro_nao_nulo(df_colunas, base_info):
                     resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
                 else:
                     if not isinstance(valor, int) and not valor.isnumeric():
-                        novaLinha = [[codUni, coluna, type(valor), categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'não_é_um_número', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
@@ -232,7 +232,7 @@ def valida_inteiro(df_colunas, base_info):
                 # a função passa a validar se é um inteiro.
                 if (type(valor) != type(np.nan)):
                     if not isinstance(valor, int) and not valor.isnumeric():
-                        novaLinha = [[codUni, coluna, type(valor), categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'não_é_um_número', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
@@ -307,8 +307,12 @@ def valida_ds_eixo_tecnologico(df_colunas, base_info):
         # Verifica se o código é técnico ou tecnólogo, se for deve existir um eixo tecnologico
         # 3, 4 : Tecnico 3 e 4
         if co_tipo_curso in lista_co_tipo_curso:
-            if not conteudo.upper() in lista_ds_eixo_tecnologico:
-                novaLinha = [[codUni, coluna, conteudo, categoria, cod_coluna]]
+            if (type(conteudo) == type(np.nan)):
+                novaLinha = [[codUni, coluna, 'vazio_e_não_comforme_a_regra', categoria, cod_coluna]]
+                resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
+            else:
+              if not conteudo.upper() in lista_ds_eixo_tecnologico:
+                novaLinha = [[codUni, coluna, 'diferente_dos_eixos_e_não_comforme_a_regra', categoria, cod_coluna]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
     if len(resultado.index) != 0:
@@ -392,7 +396,7 @@ def valida_texto_nao_nulo(df_colunas, base_info):
                     resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
                 else:
                     if type(valor) != str:
-                        novaLinha = [[codUni, coluna, type(valor), categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'tipo_não_é_valido', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
                     else:
                         if not valor[:1].isalpha():
@@ -473,7 +477,7 @@ def valida_estado(df_colunas, base_info):
                         pois assim não é uma incosistência
                     """
                     if not valor.upper() in sigla_estado:
-                        novaLinha = [[codUni, coluna, valor, categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'estado_não_é uma_sigla_valida', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
@@ -543,7 +547,7 @@ def valida_sexo_aluno(df_colunas, base_info):
                 else:
                     # A função upper para padronizar, pois caso seja m ou f. Não gerar incosistência
                     if valor.upper() != 'M' and valor.upper() != 'F':
-                        novaLinha = [[codUni, coluna, valor, categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'valor_diferente_da_regra', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
@@ -610,7 +614,7 @@ def valida_texto(df_colunas, base_info):
 
                 if (type(valor) != type(np.nan)):
                     if type(valor) != str:
-                        novaLinha = [[codUni, coluna, type(valor), categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'tipo_não_é_valido', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
                     else:
                         if not valor[0].isalpha():
@@ -830,7 +834,7 @@ def valida_no_responsavel_emissao(df_colunas, base_info):
 
         if (type(codigo_diploma_certificado) != type(np.nan)):
            if (type(no_responsavel_emissao) == type(np.nan)):
-               novaLinha = [[codUni, coluna, 'NaN', categoria, cod_coluna]]
+               novaLinha = [[codUni, coluna, 'vazio_e_não_comforme_a_regra', categoria, cod_coluna]]
                resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1006,11 +1010,11 @@ def valida_tipo_oferta(df_colunas, base_info):
             # gerar inconsistencia
             if co_tipo_curso == 3:
                   if not tipo_oferta.upper() in lista_ofertas:
-                      novaLinha = [[codUni, coluna, 'nao_existe_tipo_oferta_curso', categoria, cod_coluna]]
+                      novaLinha = [[codUni, coluna, 'não_conforme_a_regra', categoria, cod_coluna]]
                       resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
             else:
               if tipo_oferta != '-':
-                      novaLinha = [[codUni, coluna, 'tipo_oferta_diferente_hifen', categoria, cod_coluna]]
+                      novaLinha = [[codUni, coluna, 'diferente_hifen_e_não_conforme_a_regra', categoria, cod_coluna]]
                       resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1191,7 +1195,7 @@ def valida_diploma_certificado(df_colunas, base_info):
         gerar_csv_inconsistencia(resultado, nome_funcao, caminho_arquivo)
         resultado.drop(resultado.index, inplace = True) # limpa o df para a próxima iteração
     else:
-        print("Nenhuma inconsistência encontrada na coluna: " + coluna)
+        print("Nenhuma inconsistência encontrada na coluna: " + coluna_codigo_diploma)
 
     end = time.perf_counter()
     tempo_gasto = round(end - start, 2)
@@ -1465,11 +1469,11 @@ def valida_sg_brasilpro(df_colunas, base_info):
         # Em caso afirmativo, o sg_brasilpro deve estar preenchido com sim
         if (type(ano_convenio_brasil_pro) != type(np.nan)):
             if (sg_brasilpro) != 'sim' or (type(sg_brasilpro) == type(np.nan)):
-                novaLinha = [[codUni, 'sg_brasilpro', sg_brasilpro, categoria, cod_coluna]]
+                novaLinha = [[codUni, 'sg_brasilpro', 'não_conforme_a_regra', categoria, cod_coluna]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
         else:
             if (sg_brasilpro) != 'não' or (type(sg_brasilpro) == type(np.nan)):
-                novaLinha = [[codUni, 'sg_brasilpro', sg_brasilpro, categoria, cod_coluna]]
+                novaLinha = [[codUni, 'sg_brasilpro', 'não_conforme_a_regra', categoria, cod_coluna]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1648,7 +1652,7 @@ def valida_dt_deferimento_curso(df_colunas, base_info):
                 if (dt_deferimento_ue_valida != False and data_deferimento_ue_curso_valida != False):
                     # Comparando as datas. De acordo com o documento exploração de dados, a data_deferimento_ue_curso_valida nao pode ser superior a data_inicio
                     if (data_deferimento_ue_curso_valida < dt_deferimento_ue_valida):
-                        novaLinha = [[codUni, coluna, 'dt_deferimento_ue_superior', categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'dt_deferimento_ue_superior_não_conforme_a_regra', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1729,7 +1733,7 @@ def valida_dt_cadastro_aluno_sistema(df_colunas, base_info):
             else:
                 if (valida_data_dt_cadastro_aluno_sistema != False and  valida_dt_cadastro_ciclo  != False):
                     if (dt_cadastro_aluno_sistema < dt_cadastro_ciclo):
-                        novaLinha = [[codUni, 'dt_cadastro_aluno_sistema', 'dt_cadastro_aluno_sistema_inferior', categoria, cod_coluna]]
+                        novaLinha = [[codUni, 'dt_cadastro_aluno_sistema', 'dt_cadastro_aluno_sistema_inferior_não_conforme_a_regra', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1810,7 +1814,7 @@ def valida_dt_cadastro_ciclo(df_colunas, base_info):
             else:
                 if (valida_data_dt_cadastro_ciclo != False and valida_data_dt_deferimento_curso != False):
                     if (dt_cadastro_ciclo < dt_deferimento_curso):
-                        novaLinha = [[codUni, 'dt_cadastro_ciclo', 'dt_cadastro_ciclo_inferior', categoria, cod_coluna]]
+                        novaLinha = [[codUni, 'dt_cadastro_ciclo', 'dt_cadastro_ciclo_inferior_não_conforme_a_regra', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -2128,7 +2132,7 @@ def valida_ano_convenio_brasil_pro(df_colunas, base_info):
                       valor = int(valor)
                           # Verificando se o ano é maior que o ano atual, se for gerar inconsistencia.
                       if (valor > ano):
-                          novaLinha = [[codUni, coluna, 'ano_maior_que_o_ano_atual', categoria, cod_coluna]]
+                          novaLinha = [[codUni, coluna, 'ano_maior_que_o_ano_atual_não_conforme_a_regra', categoria, cod_coluna]]
                           resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
             if len(resultado.index) != 0:
@@ -2294,7 +2298,7 @@ def valida_dt_validacao_conclusao(df_colunas, base_info):
 
         if type(data_geracao_codigo_diploma_certificado) != type(np.nan):
             if type(dt_validacao_conclusao) == type(np.nan):
-                novaLinha = [[codUni, coluna, 'dt_geracao_exite_dt_validacao_nao_existe', categoria, cod_coluna]]
+                novaLinha = [[codUni, coluna, 'dt_geracao_exite_dt_validacao_nao_existe_não_conforme_a_regra', categoria, cod_coluna]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -2437,11 +2441,11 @@ def valida_co_endereco_co_ies(df_colunas, base_info):
 
                 if (sistema_ensino == 'Federal' and dependencia_admin == 'Privada'):
                     if (type(valor) == type(np.nan)):
-                        novaLinha = [[codUni, coluna, 'Nan', categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'Nan_não_conforme_a_regra', categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
                     else:
                         if not isinstance(valor, int) and not valor.isnumeric():
-                            novaLinha = [[codUni, coluna, type(valor), categoria, cod_coluna]]
+                            novaLinha = [[codUni, coluna, 'tipo_não_é_valido', categoria, cod_coluna]]
                             resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
