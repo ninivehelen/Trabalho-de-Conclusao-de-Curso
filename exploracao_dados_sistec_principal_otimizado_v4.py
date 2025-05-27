@@ -62,7 +62,7 @@ bases = {
 }
 
 qtdRegistrosParaProcessar = None
-desejoProcesarDuplicidades = False
+desejoProcesarDuplicidades =  False
 listaColunas = None
 
 # ajuste dos nomes das colunas da base -> versão IFB SISTEC
@@ -337,7 +337,6 @@ mapa_funcoes = {
 
 }
 
-
 for chave_base, base_dados in bases.items():
 
     if base_dados['processar_base']:
@@ -351,13 +350,14 @@ for chave_base, base_dados in bases.items():
         arquivo_dados = caminho_completo_base + nome_base
 
         if desejoProcesarDuplicidades:
-            listaColunas = ['co_aluno', 'co_matricula']
+            listaColunas =  ['Aluno', 'co_ciclo_matricula']
             qtdRegistrosParaProcessar = None
         else:
             listaColunas = None
 
         df_base_dados_chunk = pd.read_csv( 
             arquivo_dados, 
+            sep=';',
             keep_default_na = False,
             #engine = 'python',
             header = 0,
@@ -370,7 +370,6 @@ for chave_base, base_dados in bases.items():
             nrows = qtdRegistrosParaProcessar, 
             chunksize = 500000
         )
-        
         print("Processando chunks...")
         chunks = []
         c = 1
@@ -401,7 +400,8 @@ for chave_base, base_dados in bases.items():
             print("Consumo de memória do dataframe geral: ", consumo_memo)
 
             # Adicionando uma coluna com código universal
-            df_base_dados['codigo_universal_linha'] = df_base_dados['Aluno'].astype(str) + '_' + df_base_dados['co_ciclo_matricula'].astype(str)
+            print(df_base_dados.columns)
+            df_base_dados['codigo_universal_linha'] = df_base_dados['Aluno'].astype(str)  + '_' + df_base_dados['co_ciclo_matricula'].astype(str)
             print("Coluna de código universal adicionada.")
 
         print("\nResumo dos dados: ")
