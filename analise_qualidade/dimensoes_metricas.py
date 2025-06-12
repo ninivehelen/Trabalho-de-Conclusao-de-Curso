@@ -57,7 +57,6 @@ def metrica_consistencia(df_dados_classificados,total_df_sistec):
     print(porcenta_duas_decimais)
     salvar_dados_metrica('Consistência', porcenta_duas_decimais)
 
-
 def salvar_dados_metrica(nome_dimensao, porcentagem_qualidade):
     lista_data_frame = {'Dimensão': [nome_dimensao],'Completude dos dados': [porcentagem_qualidade]}
     df_metrica = pd.DataFrame(lista_data_frame)
