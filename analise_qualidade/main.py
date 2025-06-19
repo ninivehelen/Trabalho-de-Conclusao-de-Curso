@@ -45,9 +45,9 @@ def salvar_classificacao(df_dados):
     print('arquivo salvo com a dimensão classificada')
 
 if __name__ == "__main__":
-    #unir_arquivos()
+    unir_arquivos()
     df_dados = pd.read_csv('inconsistencias/base1_inconsistencias_unido.csv')
-    #classfica_dimensoes(df_dados)
+    classfica_dimensoes(df_dados)
     df_dados_classificados, total_df_sistec = abri_arquivo_classificado()
     metrica_completude(df_dados_classificados, total_df_sistec)
     metrica_consistencia(df_dados_classificados,total_df_sistec)

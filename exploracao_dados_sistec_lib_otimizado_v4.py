@@ -4,18 +4,18 @@ import numpy as np
 import math
 import time
 import re
-import os
+import os 
 # Biblioteca para controlar a visualização dos processo
 # import ray
-
 from datetime import datetime
 # Biblioteca para controlar a visualização dos processo
 from tqdm import tqdm
 from itertools import cycle
 
+diretorio_principal = os.getcwd()
+print(diretorio_principal)
 
-DIR_INCONSISTENCIAS = 'inconsistencias'
-
+DIR_INCONSISTENCIAS = f'{diretorio_principal}/inconsistencias'
 # Condição para verificar se o diretório já existe
 if os.path.isdir(DIR_INCONSISTENCIAS):
     print("Diretório já existe: ", DIR_INCONSISTENCIAS)
@@ -23,7 +23,6 @@ else:
     os.makedirs(DIR_INCONSISTENCIAS)
     os.chdir(DIR_INCONSISTENCIAS)
     print("Diretório criado: ", DIR_INCONSISTENCIAS)
-
 
 print("\n>> Arquivo [exploracao_dados_sistec_lib_otimizado_v4] adicionado com sucesso.\n")
 
@@ -95,7 +94,7 @@ def buscar_dados_repetidos(df_base_dados):
 
     # retorna da segunda duplicidade encontrada em diante.
     df_temp = df_base_dados[df_base_dados.duplicated()]
-
+ 
     end = time.perf_counter()
 
     tempo_gasto = round(end - start, 2)

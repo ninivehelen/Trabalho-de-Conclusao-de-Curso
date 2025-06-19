@@ -1,11 +1,7 @@
-
 from IPython.display import clear_output
 clear_output()
 
-
 from exploracao_dados_sistec_lib_otimizado_v4 import *
-
-caminho_completo_base = "C:/Users/niniv/OneDrive/Área de Trabalho/Trabalho-de-Conclusao-de-Curso/"
 
 """
     Arquivo criado para processar a base versão 4 da base de dados fornecdida.
@@ -55,17 +51,37 @@ import psutil
 
 from datetime import datetime
 
-# processar_base: se True, processa a base, senão, não processa
+#Biblioteca com interface gráfica para capturar arquvo
+from tkinter import filedialog
+
+# alterar isso é necessário para capturar caminho da base, se for selecionar as duas, as duas precisa esta TRUE
+caminho_completo_base_1 = True
+# caminho_completo_base_2 = True
+
+# Processar_base: se True, processa a base, senão, não processa
+if caminho_completo_base_1 == True: 
+    caminho_completo_base_1 = filedialog.askopenfilename()
+    nome_base1 = caminho_completo_base_1.split("/")[6]
+    caminho_ajustado = caminho_completo_base_1.rfind("/") + 1
+    caminho_completo_base = caminho_completo_base_1[:caminho_ajustado]
+ 
+# if caminho_completo_base_2 == True: 
+#     caminho_completo_base_2 = filedialog.askopenfilename()
+#     global nome_base2 
+#     nome_base2 = caminho_completo_base_2.split("/")[6]
+#     caminho_ajustado = caminho_completo_base_2.rfind("/") + 1
+#     caminho_completo_base = caminho_completo_base_2[:caminho_ajustado]
+
 bases = {
-    'base_dados_1' : {'processar_base' : True, 'nome': 'sistec_ifb.csv'},
-    'base_dados_2' : {'processar_base' : False, 'nome': ''}
+    'base_dados_1' : {'processar_base' : True, 'nome': f'{nome_base1}'}
+    # 'base_dados_2' : {'processar_base' : False, 'nome': f'{nome_base2}'}
 }
 
 qtdRegistrosParaProcessar = None
 desejoProcesarDuplicidades =  False
 listaColunas = None
 
-# ajuste dos nomes das colunas da base -> versão IFB SISTEC
+# Ajuste dos nomes das colunas da base -> versão IFB SISTEC
 novosNomesColunas = [
     "Aluno",
     "co_ciclo_matricula",
@@ -368,7 +384,7 @@ for chave_base, base_dados in bases.items():
             skiprows = 0,
             usecols = listaColunas,
             nrows = qtdRegistrosParaProcessar, 
-            chunksize = 500000
+            chunksize = 100
         )
         print("Processando chunks...")
         chunks = []
