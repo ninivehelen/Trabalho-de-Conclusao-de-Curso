@@ -2,13 +2,13 @@ import pandas as pd
 import pandasql
 
 # Arquivo sistec 
-df_sistec = pd.read_csv('sistec_ifb.csv', sep=';',encoding='utf-8')
+df_sistec = pd.read_csv('sistec_ifb.csv', sep=';', encoding='utf-8')
 
 # Arquivo com as inconsistencias geradas após a validação
-df = pd.read_csv('inconsistencias/base1_inconsistencias_unido.csv')
+df = pd.read_csv('inconsistencias/base1_inconsistencias_unido.csv',  sep=',', encoding='utf-8')
 
 # Arquivo com as inconsistencias geradas com as dimensões afetadas classificadas 
-df_classificado = pd.read_csv('inconsistencias/base1_inconsistencias_unido_classificado.csv')
+df_classificado = pd.read_csv('inconsistencias/base1_inconsistencias_unido_classificado.csv',  sep=',', encoding='utf-8')
 
 print("Total de linhas data frame Sistec")
 total_linhas_df = df_sistec.shape[0]
@@ -34,7 +34,7 @@ GROUP BY codigo_universal_linha
 """
 print(pandasql.sqldf(query, locals()))
 
-# Conferindo a inconsistênncia 
+# Conferindo a inconsistência 
 query_ = """
 SELECT codigo_universal_linha, tipo_inconsistencia
 FROM df
@@ -43,19 +43,16 @@ GROUP BY codigo_universal_linha
 """
 print(pandasql.sqldf(query_, locals()))
 
-# Nesse é necessário passar o codigo para verificar se a inconsistencias existe
-query_ = """
-SELECT 
-FROM df
-WHERE Aluno = '10'
-GROUP BY Aluno
-"""
-print(pandasql.sqldf(query_, locals()))
 
+# # Nesse é necessário passar o codigo para verificar se a inconsistencias existe 
 # query_ = """
-# SELECT codigo_universal_linha, tipo_inconsistencia
-# FROM df
-# WHERE codigo_universal_linha IN ('40348_2467355', '63019_2709325')
-# GROUP BY codigo_universal_linha
+# SELECT 
+# * FROM df_sistec 
+# WHERE Aluno = '40348'
+# GROUP BY Aluno
 # """
 # print(pandasql.sqldf(query_, locals()))
+
+
+
+

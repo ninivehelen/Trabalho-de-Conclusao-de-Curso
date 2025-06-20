@@ -58,7 +58,7 @@ def metrica_consistencia(df_dados_classificados,total_df_sistec):
     salvar_dados_metrica('Consistência', porcenta_duas_decimais)
 
 def salvar_dados_metrica(nome_dimensao, porcentagem_qualidade):
-    lista_data_frame = {'Dimensão': [nome_dimensao],'Completude dos dados': [porcentagem_qualidade]}
+    lista_data_frame = {'Dimensão': [nome_dimensao],'Calculo da metrica': [porcentagem_qualidade]}
     df_metrica = pd.DataFrame(lista_data_frame)
     print(df_metrica)
-    df_metrica.to_csv('inconsistencias/dados_metrica_calculado.csv', mode='a', header=not os.path.exists('inconsistencias/dados_metrica_calculado.csv') , sep=',', encoding="utf-8", index=False)
+    df_metrica.to_csv('inconsistencias/dados_metrica_calculado.csv', mode='a', header=not os.path.exists('inconsistencias/dados_metrica_calculado.csv') , index=False)
