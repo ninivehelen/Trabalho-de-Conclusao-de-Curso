@@ -166,7 +166,7 @@ def valida_inteiro_nao_nulo(df_colunas, base_info):
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
-                nome_funcao = 'valida_inteiro_nao_nulo_' + coluna
+                nome_funcao = 'valida_inteiro_não_nulo_' + coluna
                 data = data_hora_atual_como_string()
                 caminho_arquivo = DIR_INCONSISTENCIAS + "/" + base_info["id"] + "_" + nome_funcao + "_" + data
                 gerar_csv_inconsistencia(resultado, nome_funcao, caminho_arquivo)
@@ -403,7 +403,7 @@ def valida_texto_nao_nulo(df_colunas, base_info):
                             resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
             if len(resultado.index) != 0:
-                nome_funcao = 'valida_texto_nao_nulo_' + str(coluna)
+                nome_funcao = 'valida_texto_não_nulo_' + str(coluna)
                 data = data_hora_atual_como_string()
                 caminho_arquivo = DIR_INCONSISTENCIAS + "/" + base_info["id"] + "_" + nome_funcao + "_" + data
                 gerar_csv_inconsistencia(resultado, nome_funcao, caminho_arquivo)
@@ -690,13 +690,13 @@ def valida_subdependencia(df_colunas, base_info):
 
         if (dependencia_admin.lower()) == 'artigo 240 - sistema s' or (dependencia_admin.lower()) == 'militar' :
            if ((type(subdependencia) == type(np.nan)) or (subdependencia == "-")):
-               novaLinha = [[codUni, coluna, 'NaN', categoria, cod_coluna]]
+               novaLinha = [[codUni, coluna, 'vazio_não_conforme_a_regra', categoria, cod_coluna]]
                resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
         else:
            if (dependencia_admin.lower()) == 'pública' or (dependencia_admin.lower()) == 'privada' :
                if ((type(subdependencia) != type(np.nan)) or (subdependencia != "-")):
-                   novaLinha = [[codUni, coluna, 'vazio_esperado', categoria, cod_coluna]]
+                   novaLinha = [[codUni, coluna, 'vazio_esperado_não_conforme_a_regra', categoria, cod_coluna]]
                    resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
     if len(resultado.index) != 0:
@@ -1172,11 +1172,11 @@ def valida_diploma_certificado(df_colunas, base_info):
 
         if (type(data_geracao_codigo_diploma_certificado) != (type(str(np.nan)))):  # como as datas são convertidas para str, converte também o tipo do  np.nan, para verificar se possui vazio
             if not valida_data_geracao_codigo_diploma_certificado:
-                novaLinha = [[codUni, coluna_data_geracao, 'data_geracao_invalida', categoria_data_geracao, cod_coluna_data_geracao]]
+                novaLinha = [[codUni, coluna_data_geracao, 'data_invalida', categoria_data_geracao, cod_coluna_data_geracao]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
             else:
                 if (type(codigo_diploma_certificado) == type(np.nan) or (codigo_diploma_certificado == '-')):
-                    novaLinha = [[codUni, coluna_codigo_diploma, 'data_geracao_existe_codigo_diploma_nao',  categoria_codigo_diploma, cod_coluna_codigo_diploma]]
+                    novaLinha = [[codUni, coluna_codigo_diploma, 'data_geracao_existe_codigo_diploma_não',  categoria_codigo_diploma, cod_coluna_codigo_diploma]]
                     resultado = pd.concat([pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
                 else:
                     if (co_tipo_curso != 3) and (situacao_matricula.lower() != 'concluida'):
@@ -1184,7 +1184,7 @@ def valida_diploma_certificado(df_colunas, base_info):
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
         else:
             if (type(codigo_diploma_certificado) != type(np.nan) or (codigo_diploma_certificado != '-')):
-                novaLinha = [[codUni, coluna_codigo_diploma, 'data_geracao_nao_existe_codigo_diploma_sim', categoria_codigo_diploma, cod_coluna_codigo_diploma]]
+                novaLinha = [[codUni, coluna_codigo_diploma, 'data_geracao_não_existe_codigo_diploma_sim', categoria_codigo_diploma, cod_coluna_codigo_diploma]]
                 resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
     if len(resultado.index) != 0:
@@ -1263,7 +1263,7 @@ def valida_bool_nao_nulo(df_colunas, base_info):
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
             if len(resultado.index) != 0:
-                nome_funcao = 'valida_bool_nao_nulo_' + coluna
+                nome_funcao = 'valida_bool_não_nulo_' + coluna
                 data = data_hora_atual_como_string()
                 caminho_arquivo = DIR_INCONSISTENCIAS + "/" + base_info["id"] + "_" + nome_funcao + "_" + data
                 gerar_csv_inconsistencia(resultado, nome_funcao, caminho_arquivo)
@@ -1906,14 +1906,14 @@ def valida_dt_data_fim_previsto(df_colunas, base_info):
                   # Comparando as datas. De acordo com o document exploração de dados,
                   # a data_fim_prevista nao pode ser inferior a data_inicio
                   if (data_fim_previsto_valida < data_inicio_valida):
-                      novaLinha = [[codUni, coluna, 'dt_data_fim_previsto_inferior', categoria, cod_coluna]]
+                      novaLinha = [[codUni, coluna, 'dt_data_fim_previsto_inferior_data_inicio', categoria, cod_coluna]]
                       resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
             else:
               if (data_inicio_valida != False and data_fim_previsto_valida != False): #Para comparar as datas, as duas tem que ser validas, por isso essa verificação
                   # Comparando as datas. De acordo com o document exploração de dados,
                   # a data_fim_prevista nao pode ser inferior a data_inicio
                   if (data_fim_previsto_valida <= data_inicio_valida):
-                      novaLinha = [[codUni, coluna, 'dt_data_fim_previsto_inferior', categoria, cod_coluna]]
+                      novaLinha = [[codUni, coluna, 'dt_data_fim_previsto_inferior_ou_igual_data_inicio', categoria, cod_coluna]]
                       resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True )
 
 
@@ -1995,7 +1995,7 @@ def valida_data_nao_nulo(df_colunas, base_info):
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
             if len(resultado.index) != 0:
-                nome_funcao = 'valida_data_nao_nulo_' + coluna
+                nome_funcao = 'valida_data_não_nulo_' + coluna
                 data = data_hora_atual_como_string()
                 caminho_arquivo = DIR_INCONSISTENCIAS + "/" + base_info["id"] + "_" + nome_funcao + "_" + data
                 gerar_csv_inconsistencia(resultado, nome_funcao, caminho_arquivo)
