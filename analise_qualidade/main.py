@@ -1,12 +1,11 @@
 import pandas as pd 
 import numpy as np 
-from unir_inconsistencias import unir_arquivos
 from dimensoes_metricas import *
 
 nome = '/base1_inconsistencias_unido.csv'
 diretorio = 'inconsistencias'
 
-# este dicionario ajuda a adicionar qual dimensão foia afetada de acordo com a descrição da inconsistência.
+# Este dicionário ajuda a adicionar qual dimensão foi afetada de acordo com a descrição da inconsistência.
 def dimensao_busca(nome_inconsistencia):
     dimensao_dicionario =  {
     'vazio'  :  'Completude',
@@ -19,8 +18,8 @@ def dimensao_busca(nome_inconsistencia):
     'diferente_hifen_e_não_conforme_a_regra': 'Consistência',
     'vazio_não_conforme_a_regra': 'Completude/Consistência',
     'diferente_dos_eixos_e_não_comforme_a_regra': 'Comformidade/Exatidão/Consistência',
-    'boleano_invalido': 'Comformidade/Exatidão',
-    'boleano_invalido_lista_cota':'Comformidade/Exatidão',
+    'booleano_invalido': 'Comformidade/Exatidão',
+    'booleano_invalido_lista_cota':'Comformidade/Exatidão',
     'data_invalida':'Comformidade/Exatidão',
     'vazio_esperado_não_conforme_a_regra':'Consistência',
     'dt_cadastro_ciclo_inferior_não_conforme_a_regra':'Consistência',
@@ -50,15 +49,20 @@ def classfica_dimensoes(df_dados):
     salvar_classificacao(df_dados)
 
 def salvar_classificacao(df_dados):
-    df_dados.to_csv(diretorio + '/base1_inconsistencias_unido_classificado.csv', index=False)
+    df_dados.to_csv(diretorio + '/sistec_ifb_inconsistencias_unido_classificado.csv', index=False)
     print('arquivo salvo com a dimensão classificada')
 
 if __name__ == "__main__":
-    unir_arquivos()
-    df_dados = pd.read_csv('inconsistencias/base1_inconsistencias_unido.csv')
+    df_dados = pd.read_csv('inconsistencias/sistec_ifb_inconsistencias_unido.csv')
     classfica_dimensoes(df_dados)
     df_dados_classificados, total_df_sistec = abri_arquivo_classificado()
+    metrica_unicidade(total_df_sistec)
     metrica_completude(df_dados_classificados, total_df_sistec)
     metrica_consistencia(df_dados_classificados,total_df_sistec)
     metrica_exatidao(df_dados_classificados,total_df_sistec)
+   
     
+
+
+
+

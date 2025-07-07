@@ -1259,7 +1259,7 @@ def valida_bool_nao_nulo(df_colunas, base_info):
                 else:
                     # Se a função retorna False. o valor boleano é invalido
                     if not verifica_boleano(valor):
-                        novaLinha = [[codUni, coluna, "boleano_invalido", categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, "booleano_invalido", categoria, cod_coluna]]
                         resultado = pd.concat( [pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
             if len(resultado.index) != 0:
@@ -1326,7 +1326,7 @@ def valida_bool(df_colunas, base_info):
 
                 if (type(valor) != type(np.nan)):
                     if not verifica_boleano(valor):
-                        novaLinha = [[codUni, coluna, "boleano_invalido", categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, "booleano_invalido", categoria, cod_coluna]]
                         resultado = pd.concat([pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
 
             if len(resultado.index) != 0:
@@ -1394,7 +1394,7 @@ def valida_tipo_cota(df_colunas, base_info):
                 valor = linha[coluna]
                 if (type(valor) != type(np.nan)):
                     if not valor in cota:
-                        novaLinha = [[codUni, coluna, 'boleano_invalido_lista_cota', categoria, cod_coluna]]
+                        novaLinha = [[codUni, coluna, 'booleano_invalido_lista_cota', categoria, cod_coluna]]
                         resultado = pd.concat([pd.DataFrame(novaLinha, columns = resultado.columns), resultado], ignore_index = True)
                 else:
                    novaLinha = [[codUni, coluna, 'NaN', categoria, cod_coluna]]
@@ -2317,7 +2317,6 @@ def valida_dt_validacao_conclusao(df_colunas, base_info):
     global_tempo_gasto_funcoes['valida_dt_validacao_conclusao'] = tempo_gasto
     print(f"Tempo total da Função (valida_dt_validacao_conclusao): {tempo_gasto} seg.")
 
-
 def valida_nu_cnpj(df_colunas, base_info):
     """
         Função para validar o número do CNPJ
@@ -2384,7 +2383,6 @@ def valida_nu_cnpj(df_colunas, base_info):
     tempo_gasto = round(end - start, 2)
     global_tempo_gasto_funcoes['valida_nu_cnpj'] = tempo_gasto
     print(f"Tempo total da Função (valida_nu_cnpj): {tempo_gasto} seg.")
-
 
 def valida_co_endereco_co_ies(df_colunas, base_info):
     """

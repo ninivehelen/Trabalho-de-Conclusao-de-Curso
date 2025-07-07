@@ -2,6 +2,7 @@ from IPython.display import clear_output
 clear_output()
 
 from exploracao_dados_sistec_lib_otimizado_v4 import *
+from funcao_apoio import unir_arquivos, verificar_duplicidade, verificar_duplicados_info_diferente
 
 """
     Arquivo criado para processar a base versão 4 da base de dados fornecdida.
@@ -48,33 +49,18 @@ import sys
 import pandas as pd
 import os
 import psutil
-
 from datetime import datetime
-
 #Biblioteca com interface gráfica para capturar arquvo
 from tkinter import filedialog
 
 # alterar isso é necessário para capturar caminho da base, se for selecionar as duas, as duas precisa esta TRUE
-caminho_completo_base_1 = True
-# caminho_completo_base_2 = True
-
-# Processar_base: se True, processa a base, senão, não processa
-if caminho_completo_base_1 == True: 
-    caminho_completo_base_1 = filedialog.askopenfilename()
-    nome_base1 = caminho_completo_base_1.split("/")[6]
-    caminho_ajustado = caminho_completo_base_1.rfind("/") + 1
-    caminho_completo_base = caminho_completo_base_1[:caminho_ajustado]
+caminho_completo_base = filedialog.askopenfilename()
+nome_base1 = caminho_completo_base.split("/")[6]
+caminho_ajustado = caminho_completo_base.rfind("/") + 1
+caminho_completo_base = caminho_completo_base[:caminho_ajustado]
  
-# if caminho_completo_base_2 == True: 
-#     caminho_completo_base_2 = filedialog.askopenfilename()
-#     global nome_base2 
-#     nome_base2 = caminho_completo_base_2.split("/")[6]
-#     caminho_ajustado = caminho_completo_base_2.rfind("/") + 1
-#     caminho_completo_base = caminho_completo_base_2[:caminho_ajustado]
-
 bases = {
-    'base_dados_1' : {'processar_base' : True, 'nome': f'{nome_base1}'}
-    # 'base_dados_2' : {'processar_base' : False, 'nome': f'{nome_base2}'}
+    'sistec_ifb' : {'processar_base' : True, 'nome': f'{nome_base1}'}
 }
 
 qtdRegistrosParaProcessar = None
@@ -82,49 +68,18 @@ desejoProcesarDuplicidades =  False
 listaColunas = None
 
 # Ajuste dos nomes das colunas da base -> versão IFB SISTEC
-novosNomesColunas = [
-    "Aluno",
-    "co_ciclo_matricula",
-    "unidade_ensino",
-    "dependencia_adm",
-    "sistema_ensino",
-    "municipio",
-    "estado",
-    "periodo",
-    "dt_data_inicio",
-    "dt_data_fim_previsto",
-    "ds_eixo_tecnologico",
-    "co_curso",
-    "no_curso",
-    "dt_deferimento_curso",
-    "co_tipo_curso",
-    "tipo_curso",
-    "co_tipo_nivel",
-    "ds_tipo_nivel",
-    "nome_ciclo",
-    "dt_cadastro_ciclo",
-    "carga_horaria",
-    "dt_cadastro_aluno_sistema",
-    "periodo_cadastro_matricula_ano",
-    "modalidade_pagto",
-    "situacao_matricula",
-    "tipo_cota",
-    "atestado_baixarenda",
-    "tipo_oferta",
-    "ano",
-    "modalidade_ensino",
-    "dt_ocorrencia_ciclo",
-    "dt_ocorrencia_matricula",
-    "data_ultima_alteracao",
-    "vagas_ofertadas",
-    "total_inscritos",
-    "co_status_matricula",
-    "sg_sexo",
-    "dt_data_nascimento",
-    "nome_completo_agrupador",
-    "sigla_agrupador"
+novosNomesColunas =  [
+    "Aluno", "co_ciclo_matricula", "unidade_ensino", "dependencia_adm", "sistema_ensino",
+    "municipio", "estado", "periodo", "dt_data_inicio", "dt_data_fim_previsto",
+    "ds_eixo_tecnologico", "co_curso", "no_curso", "dt_deferimento_curso",
+    "co_tipo_curso", "tipo_curso", "co_tipo_nivel", "ds_tipo_nivel", "nome_ciclo",
+    "dt_cadastro_ciclo", "carga_horaria", "dt_cadastro_aluno_sistema",
+    "periodo_cadastro_matricula_aluno", "modalidade_pagto", "situacao_matricula",
+    "tipo_cota", "atestado", "baixarenda", "tipo_oferta", "ano", "modalidade_ensino",
+    "dt_ocorrencia_ciclo", "dt_ocorrencia_matricula", "data_ultima_alteracao",
+    "vagas_ofertadas", "total_inscritos", "co_status_matricula", "sg_sexo",
+    "dt_data_nascimento", "nome_completo_agrupador", "sigla_agrupador"
 ]
-
 # habilitar o uso de determinadas funções
 processar_funcao = {
     'valida_inteiro_nao_nulo_status' : True,
@@ -366,7 +321,7 @@ for chave_base, base_dados in bases.items():
         arquivo_dados = caminho_completo_base + nome_base
 
         if desejoProcesarDuplicidades:
-            listaColunas =  ['Aluno', 'co_ciclo_matricula']
+            listaColunas =  ['Aluno', 'co_ciclo_matricula', 'dt_data_inicio', 'dt_data_fim_previsto','no_curso', 'nome_ciclo', 'situacao_matricula','periodo_cadastro_matricula_aluno']
             qtdRegistrosParaProcessar = None
         else:
             listaColunas = None
@@ -464,6 +419,9 @@ for chave_base, base_dados in bases.items():
         # Ajustes e contabilização do tempo gasto
         df_tempo_gasto_func = pd.DataFrame(columns = ["funcao", "tempo_gasto"])
         soma_tempo_gasto = 0
+        verificar_duplicidade(df_base_dados)
+        # verificar_duplicados_info_diferente(df_base_dados)
+        unir_arquivos()
 
         # for i, v in global_tempo_gasto_funcoes.items():
         #     df_aux = {'funcao': i, "tempo_gasto": v}
