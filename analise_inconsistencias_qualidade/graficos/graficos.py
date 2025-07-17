@@ -16,17 +16,20 @@ categorias_qualidade = [
 
 df_inconsistencias['Faixa de Qualidade'] = pd.cut(df_inconsistencias['Porcentagem da qualidade'],bins=valores_limite,labels=categorias_qualidade, include_lowest=True, right=False
 )
-
-paleta_verde = sns.light_palette("seagreen", n_colors=len(categorias_qualidade))
+sns.set_style("darkgrid") 
+paleta_verde = sns.color_palette(palette='RdYlGn', n_colors=len(categorias_qualidade))
 
 plt.figure(figsize=(10, 6))
-eixo = sns.barplot(data=df_inconsistencias, x='Dimensão', y='Porcentagem da qualidade', hue='Faixa de Qualidade', palette=paleta_verde, dodge=False
-)
+eixo = sns.barplot(data=df_inconsistencias, x='Dimensão', y='Porcentagem da qualidade', hue='Faixa de Qualidade', palette=paleta_verde, dodge=False)
 
-eixo.set_ylabel("Resultado da métrica em porcentagem")
+eixo.set_xlabel('')  # Remover titulo eixo X 
+
+eixo.set_ylabel('')  # Remover titulo eixo Y
+
+eixo.tick_params(labelsize=13)
 
 for barra in eixo.containers:
-    eixo.bar_label(barra, fontsize=10)
+     eixo.bar_label(barra, labels=[f'{p.get_height():.3f}' for p in barra], fontsize=14)
 
 plt.legend(
     bbox_to_anchor=(1.02, 1),

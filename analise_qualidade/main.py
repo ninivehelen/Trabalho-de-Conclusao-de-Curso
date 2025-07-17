@@ -1,5 +1,4 @@
 import pandas as pd 
-import numpy as np 
 from dimensoes_metricas import *
 
 nome = '/base1_inconsistencias_unido.csv'
@@ -11,29 +10,29 @@ def dimensao_busca(nome_inconsistencia):
     'vazio'  :  'Completude',
     'tipo_não_valido'  :  'Conformidade/Exatidão',
     'caracter_especial'  :  'Conformidade/Exatidão',
-    'estado_uma_sigla_não_valida': 'Comformidade/Exatidão',
-    'valor_diferente_F_M': 'Comformidade/Exatidão',
-    'cnpj_invalido' :'Comformidade/Exatidão',
+    'estado_uma_sigla_não_valida': 'Conformidade/Exatidão',
+    'valor_diferente_F_M': 'Conformidade/Exatidão',
+    'cnpj_invalido' :'Conformidade/Exatidão',
     'não_conforme_a_regra': 'Consistência',
     'diferente_hifen_e_não_conforme_a_regra': 'Consistência',
     'vazio_não_conforme_a_regra': 'Completude/Consistência',
-    'diferente_dos_eixos_e_não_comforme_a_regra': 'Comformidade/Exatidão/Consistência',
-    'booleano_invalido': 'Comformidade/Exatidão',
-    'booleano_invalido_lista_cota':'Comformidade/Exatidão',
-    'data_invalida':'Comformidade/Exatidão',
+    'diferente_dos_eixos_e_não_comforme_a_regra': 'Conformidade/Exatidão/Consistência',
+    'booleano_invalido': 'Conformidade/Exatidão',
+    'booleano_invalido_lista_cota':'Conformidade/Exatidão',
+    'data_invalida':'Conformidade/Exatidão',
     'vazio_esperado_não_conforme_a_regra':'Consistência',
     'dt_cadastro_ciclo_inferior_não_conforme_a_regra':'Consistência',
     'dt_deferimento_ue_superior_não_conforme_a_regra':'Consistência',
     'dt_cadastro_aluno_sistema_inferior_não_conforme_a_regra':'Consistência',
-    'ano_invalido':'Comformidade/Exatidão',
+    'ano_invalido':'Conformidade/Exatidão',
     'situacao_com_cpf_cpf_vazio': 'Completude/Consistência',
-    'cpf_invalido':'Comformidade/Exatidão',
+    'cpf_invalido':'Conformidade/Exatidão',
     'situacao_sem_cpf_cpf_preenchido':'Consistência',
     'dt_data_fim_previsto_inferior_data_inicio': 'Consistência',
     'dt_data_fim_previsto_inferior_ou_igual_data_inicio': 'Consistência',
     'diferente_1_ou_3_situacao_não_concluida':'Consistência',
-    'data_geracao_existe_codigo_diploma_não':'Comformidade/Exatidão/Consistência',
-    'data_geracao_não_existe_codigo_diploma_sim':'Comformidade/Exatidão/Consistência',
+    'data_geracao_existe_codigo_diploma_não':'Conformidade/Exatidão/Consistência',
+    'data_geracao_não_existe_codigo_diploma_sim':'Conformidade/Exatidão/Consistência',
     'ano_maior_que_o_ano_atual_não_conforme_a_regra':'Consistência',
     'dt_geracao_existe_dt_validacao_não_existe_não_conforme_a_regra':'Completude/Consistência',
     }
@@ -57,9 +56,11 @@ if __name__ == "__main__":
     classfica_dimensoes(df_dados)
     df_dados_classificados, total_df_sistec = abri_arquivo_classificado()
     metrica_unicidade(total_df_sistec)
-    metrica_completude(df_dados_classificados, total_df_sistec)
-    metrica_consistencia(df_dados_classificados,total_df_sistec)
     metrica_exatidao(df_dados_classificados,total_df_sistec)
+    metrica_completude(df_dados_classificados, total_df_sistec)
+    metrica_conformidade(df_dados_classificados,total_df_sistec)
+    metrica_consistencia(df_dados_classificados,total_df_sistec)
+   
    
     
 

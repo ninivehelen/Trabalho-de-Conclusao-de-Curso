@@ -1,7 +1,7 @@
 import pandas as pd 
 import os 
 import os
-import glob 
+import numpy as np
 import os.path
 diretorio = 'inconsistencias'
 
@@ -35,7 +35,7 @@ def metrica_unicidade(total_df_sistec):
 def metrica_exatidao(df_dados_categorizados,total_df_sistec):
     #Metrica de exatidao
     print('iniciando a metrica de exatidão')
-    exatidao =  df_dados_categorizados.loc[ df_dados_categorizados['Dimensão'].isin(['Conformidade/Exatidão', 'Comformidade/Exatidão/Consistência'])]
+    exatidao =  df_dados_categorizados.loc[ df_dados_categorizados['Dimensão'].isin(['Conformidade/Exatidão', 'Conformidade/Exatidão/Consistência'])]
     exatidao_total_linhas = exatidao.shape[0]
     print('Total de inconsistencia de exatidão', exatidao_total_linhas)
     total_linhas_diferenca = (total_df_sistec - exatidao_total_linhas) 
@@ -58,23 +58,23 @@ def metrica_completude(df_dados_categorizados,total_df_sistec):
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
     salvar_dados_metrica('Completude', porcenta_tres_decimais)
 
-def metrica_comformidade( df_dados_categorizados,total_df_sistec):
-    #Metrica de comformidade
-    print('iniciando a metrica de comformidade')
-    comformidade =  df_dados_categorizados.loc[df_dados_categorizados['Dimensão'].isin(['Conformidade/Exatidão', 'Comformidade/Exatidão/Consistência'])]
-    comformidade_total_linhas = comformidade.shape[0]
-    print('Total de inconsistencia de comformidade', comformidade_total_linhas)
-    total_linhas_diferenca = (total_df_sistec - comformidade_total_linhas) 
+def metrica_conformidade( df_dados_categorizados,total_df_sistec):
+    #Metrica de conformidade
+    print('iniciando a metrica de conformidade')
+    conformidade =  df_dados_categorizados.loc[df_dados_categorizados['Dimensão'].isin(['Conformidade/Exatidão', 'Conformidade/Exatidão/Consistência'])]
+    conformidade_total_linhas = conformidade.shape[0]
+    print('Total de inconsistencia de conformidade', conformidade_total_linhas)
+    total_linhas_diferenca = (total_df_sistec - conformidade_total_linhas) 
     print('Diferença de total inconsistencia/ Total linhas dataframe', total_linhas_diferenca)
     porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
     porcenta_tres_decimais  = "{:.3f}".format(porcentagem_qualidade)
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
-    salvar_dados_metrica('Comformidade',porcenta_tres_decimais)
+    salvar_dados_metrica('Conformidade',porcenta_tres_decimais)
 
 def metrica_consistencia( df_dados_categorizados,total_df_sistec):
     #Metrica de consistência
     print('iniciando a metrica de consistencia')
-    consistencia = df_dados_categorizados.loc[df_dados_categorizados['Dimensão'].isin(['Consistência', 'Completude/Consistência','Comformidade/Exatidão/Consistência'])]
+    consistencia = df_dados_categorizados.loc[df_dados_categorizados['Dimensão'].isin(['Consistência', 'Completude/Consistência','Conformidade/Exatidão/Consistência'])]
     consistencia_total_linhas = consistencia.shape[0]
     print('Total de inconsistencia de consistência', consistencia_total_linhas)
     total_linhas_diferenca = (total_df_sistec - consistencia_total_linhas) 
@@ -91,3 +91,4 @@ def salvar_dados_metrica(nome_dimensao, porcentagem_qualidade):
     caminho = 'inconsistencias/sistec_ifb_metrica_calculado.csv'
     caminho_arquivo = os.path.exists(caminho)
     df_metrica.to_csv(caminho, mode='a' if caminho_arquivo else 'w', header=not caminho_arquivo,index=False)
+
