@@ -22,14 +22,14 @@ paleta_verde = sns.color_palette(palette='RdYlGn', n_colors=len(categorias_quali
 plt.figure(figsize=(10, 6))
 eixo = sns.barplot(data=df_inconsistencias, x='Dimensão', y='Porcentagem da qualidade', hue='Faixa de Qualidade', palette=paleta_verde, dodge=False)
 
-eixo.set_xlabel('')  # Remover titulo eixo X 
+eixo.set_xlabel('Dimensões da qualidade dos dados analisadas', fontsize=12,labelpad=15)  # Remover titulo eixo X 
 
-eixo.set_ylabel('')  # Remover titulo eixo Y
+eixo.set_ylabel('Métrica (%)', fontsize=12)  # Remover titulo eixo Y
 
 eixo.tick_params(labelsize=13)
 
 for barra in eixo.containers:
-     eixo.bar_label(barra, labels=[f'{p.get_height():.3f}' for p in barra], fontsize=14)
+     eixo.bar_label(barra, labels=[f'{p.get_height():.2f}' for p in barra], fontsize=14)
 
 plt.legend(
     bbox_to_anchor=(1.02, 1),
