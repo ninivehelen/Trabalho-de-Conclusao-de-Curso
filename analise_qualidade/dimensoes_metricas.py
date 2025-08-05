@@ -27,8 +27,8 @@ def metrica_unicidade(total_df_sistec):
         print('Diferença de total de duplicadas/ Total linhas dataframe', total_linhas_diferenca)
         porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
 
-        truncado = int(porcentagem_qualidade * 100) / 100
-        porcenta_tres_decimais = "{:.2f}".format(truncado)
+        formatado_resu = int(porcentagem_qualidade * 100) / 100
+        porcenta_tres_decimais = "{:.2f}".format(formatado_resu)
 
         print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
         salvar_dados_metrica('Unicidade', porcenta_tres_decimais)
@@ -45,8 +45,8 @@ def metrica_exatidao(df_dados_categorizados,total_df_sistec):
     print('Diferença de total inconsistencia/ Total linhas dataframe', total_linhas_diferenca)
     porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
     
-    truncado = int(porcentagem_qualidade * 100) / 100
-    porcenta_tres_decimais = "{:.2f}".format(truncado)
+    formatado_resu = int(porcentagem_qualidade * 100) / 100
+    porcenta_tres_decimais = "{:.2f}".format(formatado_resu)
 
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
     salvar_dados_metrica('Exatidão', porcenta_tres_decimais)
@@ -61,8 +61,8 @@ def metrica_completude(df_dados_categorizados,total_df_sistec):
     print('Diferença de total inconsistencia/ Total linhas dataframe', total_linhas_diferenca)
     porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
 
-    truncado = int(porcentagem_qualidade * 100) / 100
-    porcenta_tres_decimais = "{:.2f}".format(truncado)
+    formatado_resu = int(porcentagem_qualidade * 100) / 100
+    porcenta_tres_decimais = "{:.2f}".format(formatado_resu)
 
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
     salvar_dados_metrica('Completude', porcenta_tres_decimais)
@@ -77,8 +77,8 @@ def metrica_conformidade( df_dados_categorizados,total_df_sistec):
     print('Diferença de total inconsistencia/ Total linhas dataframe', total_linhas_diferenca)
     porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
     
-    truncado = int(porcentagem_qualidade * 100) / 100
-    porcenta_tres_decimais = "{:.2f}".format(truncado)
+    formatado_resu = int(porcentagem_qualidade * 100) / 100
+    porcenta_tres_decimais = "{:.2f}".format(formatado_resu)
 
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
     salvar_dados_metrica('Conformidade',porcenta_tres_decimais)
@@ -93,8 +93,8 @@ def metrica_consistencia( df_dados_categorizados,total_df_sistec):
     print('Diferença de total inconsistencia/ Total linhas dataframe', total_linhas_diferenca)
     porcentagem_qualidade = (total_linhas_diferenca / total_df_sistec) * 100
     
-    truncado = int(porcentagem_qualidade * 100) / 100
-    porcenta_tres_decimais = "{:.2f}".format(truncado)
+    formatado_resu = int(porcentagem_qualidade * 100) / 100
+    porcenta_tres_decimais = "{:.2f}".format(formatado_resu)
 
     print("porcentagem da qualidade dos dados", porcenta_tres_decimais)
     salvar_dados_metrica('Consistência', porcenta_tres_decimais)
