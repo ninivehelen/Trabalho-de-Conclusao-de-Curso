@@ -112,20 +112,17 @@ O portal contém um dicionário detalhado sobre os dados.
 
 ## Ferramentas Utilizadas
 Para a construção das funções que validam as regras de negócio dos dados e calculam as métricas, todo o código foi desenvolvido em **Python**:
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" width="40"/> 
 
 Para o carregamento e manipulação dos dados, utilizamos a biblioteca **pandas**:  
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/pandas.svg" width="40"/>
+
 
 Para a criação de gráficos, foram utilizadas as bibliotecas **Matplotlib** e **Seaborn**:  
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/matplotlib.svg" width="40"/> 
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/seaborn.svg" width="40"/>
+
 
 Para a criação das documentações, foi utilizado o **Figma**:  
-<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figma.svg" width="40"/>
+
 
  
-
 
 
 
