@@ -1,0 +1,5 @@
+codigo_universal_linha,coluna,tipo_inconsistencia,categoria,cod_coluna
+63019_2709325,sg_sexo,NaN,Matrícula,25
+56278_2610915,sg_sexo,valor_diferente_F_M,Matrícula,25
+23148_2074981,sg_sexo,valor_diferente_F_M,Matrícula,25
+23148_1975958,sg_sexo,valor_diferente_F_M,Matrícula,25
