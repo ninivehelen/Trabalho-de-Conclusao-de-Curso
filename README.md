@@ -99,7 +99,7 @@ Para isso:
 
 Para realizar este projeto, foram criadas documentações em PDF sobre os dados, as regras de negócio e uma classificação das dimensões que seriam afetadas caso determinada regra não fosse seguida.
  
-Na pasta [documentações dos registros dos dados](#pasta_documentacao) estão os arquivos das documentações:
+Na pasta [documentações dos registros dos dados](https://github.com/ninivehelen/Trabalho-de-Conclusao-de-Curso/tree/31ba36e2c2f3b60d04edc84f0664a2341946640e/documentacao_dados) contém os seguintes arquivos:
 
 - `documentacao_regra_negocio_dados_ifb.pdf`: documento contendo as regras de negócio dos dados  
 - `documentacao_classificacao_dimensao.pdf`: documento com a classificação das dimensões afetadas caso o dado não siga a regra
@@ -111,17 +111,18 @@ O portal contém um dicionário detalhado sobre os dados.
 ---
 
 ## Ferramentas Utilizadas
-Para a construção das funções que validam as regras de negócio dos dados e calculam as métricas, todo o código foi desenvolvido em **Python**.  
+Para a construção das funções que validam as regras de negócio dos dados e calculam as métricas, todo o código foi desenvolvido em **Python**:
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/python.svg" width="40"/> 
 
 Para o carregamento e manipulação dos dados, utilizamos a biblioteca **pandas**:  
-<img src="https://raw.githubusercontent.com/github/explore/main/topics/pandas/pandas.png" width="40"/>
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/pandas.svg" width="40"/>
 
 Para a criação de gráficos, foram utilizadas as bibliotecas **Matplotlib** e **Seaborn**:  
-<img src="https://raw.githubusercontent.com/github/explore/main/topics/matplotlib/matplotlib.png" width="40"/>  
-<img src="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/seaborn-logo.png" width="40"/>
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/matplotlib.svg" width="40"/> 
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/seaborn.svg" width="40"/>
 
 Para a criação das documentações, foi utilizado o **Figma**:  
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" width="40"/>
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figma.svg" width="40"/>
 
  
 
