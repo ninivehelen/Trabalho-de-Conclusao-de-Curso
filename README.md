@@ -1,7 +1,5 @@
 
 # Análise de Qualidade de Dados – Sistec IFB
-![Logo do IFB](https://www.ifb.edu.br/attachments/article/3933/Plano_de_Desenvolvimento_Institucional_2014_2018_IFB.pdf)
-
 
 Este projeto faz parte do meu Trabalho de Conclusão de Curso (TCC) para o curso de Ciência da Computação no Instituto Federal de Brasília (IFB).  
 Ele realiza a análise de qualidade de dados de registros do Sistec IFB, identificando inconsistências nos dados, classificando as dimensões afetadas (Completude, Exatidão, Conformidade, Consistência e Unicidade), calculando métricas de qualidade e gerando gráficos com os resultados.
