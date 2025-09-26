@@ -20,7 +20,7 @@ def gerar_grafico_qualidade():
     Retorna:
         O gráfico é exibido na tela e salvo no caminho especificado.
     """
-
+    print("Procesando gráfico")
     valores_limite = [0, 20, 40, 60, 80, 100]
     categorias_qualidade = [
         '0 ≤ DQ < 20 (muito fraco)',
