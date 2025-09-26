@@ -126,17 +126,26 @@ O portal contém um dicionário detalhado sobre os dados.
 ## 🛠️ Ferramentas Utilizadas  
 
 Para a construção das funções que validam as regras de negócio dos dados e calculam as métricas, todo o código foi desenvolvido em **Python**:  
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="60" height="60"/>  
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="60" height="60"/>  
+</p>  
 
 Para o carregamento e manipulação dos dados, utilizamos a biblioteca **pandas**:  
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" width="60" height="60"/>  
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" width="60" height="60"/>  
+</p>  
 
 Para a criação de gráficos, foram utilizadas as bibliotecas **Matplotlib** e **Seaborn**:  
-<img src="https://matplotlib.org/_static/logo2_compressed.svg" alt="Matplotlib" width="60" height="60"/>
-<img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" width="100"/>  
+<p align="center">
+  <img src="https://matplotlib.org/_static/logo2_compressed.svg" alt="Matplotlib" width="60" height="60"/>
+  <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" width="100"/>  
+</p>  
 
 Para a criação das documentações, foi utilizado o **Figma**:  
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="60" height="60"/>  
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="60" height="60"/>  
+</p>
+
  
 
 
