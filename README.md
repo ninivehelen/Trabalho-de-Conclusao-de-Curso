@@ -6,7 +6,7 @@ Ele realiza a análise de qualidade de dados de registros do Sistec IFB, identif
 
 ---
 
-## Informações importantes sobre o estre trabalho
+## Informações importantes sobre o trabalho
 O projeto, realizado por uma equipe do IFB em parceria com o Sistec e autorizado pelo TED 10718/2021, teve como foco a definição de métodos e procedimentos para higienização de dados (identificação, correção ou remoção de dados incorretos). Utilizando a base do Sistec, que contém registros da educação profissional e tecnológica do Brasil, a equipe documentou regras de negócio, criou funções de validação e desenvolveu um painel para visualização das informações e identificação de inconsistências.
 
 Os códigos: 
