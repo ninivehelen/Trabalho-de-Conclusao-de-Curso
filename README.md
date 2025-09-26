@@ -6,6 +6,19 @@ Ele realiza a análise de qualidade de dados de registros do Sistec IFB, identif
 
 ---
 
+## Informações importantes sobre o estre trabalho
+O projeto, realizado por uma equipe do IFB em parceria com o Sistec e autorizado pelo TED 10718/2021, teve como foco a definição de métodos e procedimentos para higienização de dados (identificação, correção ou remoção de dados incorretos). Utilizando a base do Sistec, que contém registros da educação profissional e tecnológica do Brasil, a equipe documentou regras de negócio, criou funções de validação e desenvolveu um painel para visualização das informações e identificação de inconsistências.
+
+Os códigos: 
+` valida_dados_principal.py`
+` veri_dupli_uni_arqu.py `
+
+que fazem a verificação se os dados seguem a regra de negócio são códigos reaproveitados e ajustados para o contexto dos dados do Sistec IFB.
+
+Este trabalho de conclusão de curso, inspirado nesse projeto, busca analisar qualitativa e quantitativamente as inconsistências, avaliar a qualidade dos dados e propor sugestões para minimizar novos problemas. A análise será feita com base em metodologias de qualidade de dados, utilizando registros do IFB disponíveis no portal de dados abertos.
+
+---
+
 ## Objetivo Geral
 
 Realizar uma análise quantitativa e qualitativa da qualidade dos dados do Sistec provenientes do IFB, identificando inconsistências e propondo estratégias de melhoria, com o objetivo de aumentar a confiabilidade das informações.
@@ -33,7 +46,7 @@ trabalho_de_conclusao_de_curso/
         ├── .gitignore
         ├── sistec_ifb.csv
         ├── valida_dados_lib.py
-        ├── valida_dados_principal.py
+        ├── valida_dados_principal.py 
         └── veri_dupli_uni_arqu.py
     └── documentacao_dados/
         │   └── documentacao_classificacao_dimensao.pdf 
@@ -122,7 +135,6 @@ Para a criação de gráficos, foram utilizadas as bibliotecas **Matplotlib** e 
 Para a criação das documentações, foi utilizado o **Figma**:  
 
 
- 
 
 
 
