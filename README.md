@@ -125,6 +125,12 @@ O portal contém um dicionário detalhado sobre os dados.
 
 ## 🛠️ Ferramentas Utilizadas  
 
+Para a criação das documentações, foi utilizado o **Figma**:  
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="60" height="60"/>  
+</p>
+
+
 Para a construção das funções que validam as regras de negócio dos dados e calculam as métricas, todo o código foi desenvolvido em **Python**:  
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" width="60" height="60"/>  
@@ -141,10 +147,6 @@ Para a criação de gráficos, foram utilizadas as bibliotecas **Matplotlib** e 
   <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" width="100"/>  
 </p>  
 
-Para a criação das documentações, foi utilizado o **Figma**:  
-<p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" width="60" height="60"/>  
-</p>
 
  
 
